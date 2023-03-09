@@ -5,6 +5,7 @@ public class Candidate {
     private String firstName;
     private String lastName;
     private String emailAddress;
+    private String password;
 
     public int getId() {
         return id;
@@ -36,6 +37,14 @@ public class Candidate {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFullName() {
