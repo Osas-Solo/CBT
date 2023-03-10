@@ -79,6 +79,4 @@ public class CandidateManipulator {
             candidate.setEmailAddress(resultSet.getString("email_address"));
         }
     }
-
-
 }
