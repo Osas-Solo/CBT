@@ -19,7 +19,7 @@
 
     for (Subject currentSubject: subjects) {
 %>
-    <p><%= currentSubject.getName()%></p>
+    <p>${currentSubject.getName()}</p>
 <%
     }
 %>
