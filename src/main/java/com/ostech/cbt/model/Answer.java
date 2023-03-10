@@ -46,4 +46,18 @@ public class Answer {
 
         return correctAnswersCount;
     }
+
+    public static ArrayList<Answer> reorderAnswersToMatchQuestions(ArrayList<Question> questions, ArrayList<Answer> answers) {
+        ArrayList<Answer> reorderedAnswers = new ArrayList<>();
+
+        for (Question currentQuestion : questions) {
+            for (Answer currentAnswer: answers) {
+                if (currentAnswer.getQuestion().getId() == currentQuestion.getId()) {
+                    reorderedAnswers.add(currentAnswer);
+                }
+            }
+        }
+
+        return reorderedAnswers;
+    }
 }
