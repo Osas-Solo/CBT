@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class QuestionManipulator {
-    public static ArrayList<Question> getAllQuestions(int numberOfQuestions) {
+    public static ArrayList<Question> getQuestions(int numberOfQuestions) {
         ArrayList<Question> questions = new ArrayList<>();
 
         try {
