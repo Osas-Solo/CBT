@@ -78,5 +78,8 @@ public class CandidateManipulator {
             candidate.setLastName(resultSet.getString("last_name"));
             candidate.setEmailAddress(resultSet.getString("email_address"));
         }
+
+        selectStatement.close();
+        databaseConnection.close();
     }
 }

@@ -52,6 +52,9 @@ public class SubjectManipulator {
             if (resultSet.next()) {
                 questionsCount = resultSet.getInt(1);
             }
+
+            selectStatement.close();
+            databaseConnection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,6 +71,9 @@ public class SubjectManipulator {
             subject.setId(resultSet.getInt("id"));
             subject.setName(resultSet.getString("name"));
         }
+
+        selectStatement.close();
+        databaseConnection.close();
     }
 
     public static ArrayList<Subject> getAllSubjects() {
@@ -87,6 +93,9 @@ public class SubjectManipulator {
                 currentSubject.setName(resultSet.getString("name"));
                 subjects.add(currentSubject);
             }
+
+            selectStatement.close();
+            databaseConnection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

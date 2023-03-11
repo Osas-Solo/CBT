@@ -43,6 +43,9 @@ public class AnswerManipulator {
                 currentAnswer.setCorrectOption(resultSet.getString("correct_option").charAt(0));
                 answers.add(currentAnswer);
             }
+
+            selectStatement.close();
+            databaseConnection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -14,7 +14,7 @@
 </h1>
 <br/>
 
-<%
+<%--<%
     ArrayList<Subject> subjects = (ArrayList<Subject>) request.getAttribute("subjects");
 
     for (Subject currentSubject: subjects) {
@@ -22,7 +22,7 @@
     <p>${currentSubject.getName()}</p>
 <%
     }
-%>
+%>--%>
 <a href="${pageContext.request.contextPath}/">Hello Servlet</a>
 </body>
 </html>

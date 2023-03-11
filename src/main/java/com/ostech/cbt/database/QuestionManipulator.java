@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class QuestionManipulator {
-    public static ArrayList<Question> getQuestions(int numberOfQuestions) {
+    public static ArrayList<Question> getQuestions(int subjectID, int numberOfQuestions) {
         ArrayList<Question> questions = new ArrayList<>();
 
         try {
             Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
             String questionsQuery = String.format("SELECT id, subject_id, question, option_a, option_b, option_c, option_d " +
-                    "FROM questions " +
-                    "ORDER BY RAND() LIMIT %d", numberOfQuestions);
+                    "FROM questions WHERE subject_id = %d " +
+                    "ORDER BY RAND() LIMIT %d", subjectID, numberOfQuestions);
 
             Statement selectStatement = databaseConnection.createStatement();
 
@@ -44,6 +44,9 @@ public class QuestionManipulator {
                 currentQuestion.shuffleOptions();
                 questions.add(currentQuestion);
             }
+
+            selectStatement.close();
+            databaseConnection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
