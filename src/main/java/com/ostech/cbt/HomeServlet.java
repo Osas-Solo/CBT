@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(urlPatterns = {"/", "/home", "/index"})
+@WebServlet(urlPatterns = {"/home", "/index"})
 public class HomeServlet extends HttpServlet {
     private ArrayList<Subject> subjects;
 
@@ -17,10 +17,6 @@ public class HomeServlet extends HttpServlet {
         response.setContentType("text/html");
 
         subjects = SubjectManipulator.getAllSubjects();
-
-        for (Subject currentSubject: subjects) {
-            System.out.println(currentSubject.getName());
-        }
 
         request.setAttribute("subjects", subjects);
         request.getRequestDispatcher("index.jsp").forward(request, response);
