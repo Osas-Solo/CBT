@@ -13,7 +13,7 @@ public class SubjectManipulator {
         Subject subject = new Subject();
 
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String subjectQuery = String.format("SELECT id, name FROM subjects WHERE id = %d", subjectID);
             retrieveSubjectInformation(subject, databaseConnection, subjectQuery);
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class SubjectManipulator {
         Subject subject = new Subject();
 
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String subjectQuery = String.format("SELECT id, name " +
                     "FROM subjects WHERE name = '%s'", subjectName);
             retrieveSubjectInformation(subject, databaseConnection, subjectQuery);
@@ -42,7 +42,7 @@ public class SubjectManipulator {
         int questionsCount = 0;
 
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String questionsCountQuery = String.format("SELECT count(*) FROM questions " +
                     "WHERE subject_id = '%d'", subjectID);
 
@@ -80,7 +80,7 @@ public class SubjectManipulator {
         ArrayList<Subject> subjects = new ArrayList<>();
 
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String subjectsQuery = "SELECT id, name FROM subjects ORDER BY name";
 
             Statement selectStatement = databaseConnection.createStatement();

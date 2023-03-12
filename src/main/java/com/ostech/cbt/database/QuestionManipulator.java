@@ -13,7 +13,7 @@ public class QuestionManipulator {
         ArrayList<Question> questions = new ArrayList<>();
 
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String questionsQuery = String.format("SELECT id, subject_id, question, option_a, option_b, option_c, option_d " +
                     "FROM questions WHERE subject_id = %d " +
                     "ORDER BY RAND() LIMIT %d", subjectID, numberOfQuestions);

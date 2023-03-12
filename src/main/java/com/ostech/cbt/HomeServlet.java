@@ -13,10 +13,6 @@ import javax.servlet.annotation.*;
 public class HomeServlet extends HttpServlet {
     private ArrayList<Subject> subjects;
 
-    public void init() {
-
-    }
-
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 

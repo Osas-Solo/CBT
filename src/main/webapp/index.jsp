@@ -14,15 +14,15 @@
 </h1>
 <br/>
 
-<%--<%
+<%
     ArrayList<Subject> subjects = (ArrayList<Subject>) request.getAttribute("subjects");
 
     for (Subject currentSubject: subjects) {
 %>
-    <p>${currentSubject.getName()}</p>
+    <p><%=currentSubject.getName()%></p>
 <%
     }
-%>--%>
-<a href="${pageContext.request.contextPath}/">Hello Servlet</a>
+%>
+<a href="${pageContext.request.contextPath}/index">Hello Servlet</a>
 </body>
 </html>

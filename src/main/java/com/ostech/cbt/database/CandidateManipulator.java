@@ -10,7 +10,7 @@ import java.sql.Statement;
 public class CandidateManipulator {
     public static boolean insertCandidate(Candidate candidate) {
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String insertQuery = String.format("INSERT INTO candidates (id, first_name, last_name, email_address, password) " +
                     "VALUES (%d, '%s', '%s', '%s', SHA('%s'))", candidate.getId(), candidate.getFirstName(), candidate.getLastName(), candidate.getEmailAddress(), candidate.getPassword());
             Statement insertStatement = databaseConnection.createStatement();
@@ -27,7 +27,7 @@ public class CandidateManipulator {
         Candidate candidate = new Candidate();
 
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String candidateQuery = String.format("SELECT id, first_name, last_name, email_address, password FROM candidates WHERE id = %d", candidateID);
             retrieveCandidateInformation(candidate, databaseConnection, candidateQuery);
         } catch (Exception e) {
@@ -41,7 +41,7 @@ public class CandidateManipulator {
         Candidate candidate = new Candidate();
 
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String candidateQuery = String.format("SELECT id, first_name, last_name, email_address, password " +
                     "FROM candidates WHERE email_address = '%s'", emailAddress);
             retrieveCandidateInformation(candidate, databaseConnection, candidateQuery);
@@ -56,7 +56,7 @@ public class CandidateManipulator {
         Candidate candidate = new Candidate();
 
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String candidateQuery = String.format("SELECT id, first_name, last_name, email_address, password " +
                     "FROM candidates WHERE email_address = '%s' AND password = SHA('%s')", emailAddress, password);
             retrieveCandidateInformation(candidate, databaseConnection, candidateQuery);

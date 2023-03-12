@@ -13,7 +13,7 @@ public class AnswerManipulator {
         ArrayList<Answer> answers = new ArrayList<>();
 
         try {
-            Connection databaseConnection = DatabaseConfiguration.getDatabaseConnection();
+            Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
             String answersQuery = "SELECT id, question_id, correct_option FROM answers WHERE ";
 
             if (questions.size() > 0) {
