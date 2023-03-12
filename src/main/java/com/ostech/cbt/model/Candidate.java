@@ -47,6 +47,10 @@ public class Candidate {
         this.password = password;
     }
 
+    public boolean isFound() {
+        return new Integer(id) != null && firstName != null && lastName != null && emailAddress != null;
+    }
+
     public String getFullName() {
         return getLastName().toUpperCase() + " " + getFirstName();
     }
