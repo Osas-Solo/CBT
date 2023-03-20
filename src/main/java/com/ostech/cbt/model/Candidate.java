@@ -1,5 +1,9 @@
 package com.ostech.cbt.model;
 
+import com.ostech.cbt.database.CandidateManipulator;
+
+import javax.servlet.http.HttpServletRequest;
+
 public class Candidate {
     private int id;
     private String firstName;
@@ -53,5 +57,14 @@ public class Candidate {
 
     public String getFullName() {
         return getLastName().toUpperCase() + " " + getFirstName();
+    }
+
+    public static Candidate retrieveCandidateDetailsFromSession(HttpServletRequest request) {
+        if (request.getSession().getAttribute("candidateID") != null) {
+            int candidateID = Integer.parseInt((String) request.getSession().getAttribute("candidateID"));
+            return CandidateManipulator.getCandidate(candidateID);
+        }
+
+        return null;
     }
 }
