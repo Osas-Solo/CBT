@@ -2,31 +2,33 @@
 <%@ page import="com.ostech.cbt.model.Subject" %>
 
 <%!
-String pageTitle = "Home";
+    String pageTitle = "Home";
 %>
 
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 
-    <div>
-        <h2>Select a subject below to begin a text</h2>
-    </div>
-    <div class="col-12 d-flex">
+<div>
+    <h2>Select a subject below to begin a test</h2>
+</div>
+<div class="col-12 d-flex">
     <%
         ArrayList<Subject> subjects = (ArrayList<Subject>) request.getAttribute("subjects");
 
-        for (Subject currentSubject : subjects) {
+        if (subjects != null) {
+            for (Subject currentSubject : subjects) {
     %>
-        <article class="m-5">
-            <h3>
-                <a href="${pageContext.request.contextPath}/test/<%=currentSubject.getName().toLowerCase()%>">
-                    <%=currentSubject.getName()%>
-                </a>
-            </h3>
-        </article>
+    <article class="m-5">
+        <h3>
+            <a href="${pageContext.request.contextPath}/test/<%=currentSubject.getName().toLowerCase()%>">
+                <%=currentSubject.getName()%>
+            </a>
+        </h3>
+    </article>
     <%
+            }
         }
     %>
-    </div>
+</div>
 </div>
 </body>
 </html>
