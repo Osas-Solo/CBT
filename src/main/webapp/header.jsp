@@ -11,15 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <body>
 <div class="container mb-5">
-    <header class="bg-primary">
+    <header class="sticky-md-top p-3 mb-3">
         <h1 class="text-center"><a href="${pageContext.request.contextPath}/index">CBT</a></h1>
 
-        <nav class="nav">
-            <ul class="nav nav-justified">
+        <nav>
+            <ul class="nav justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/index">Home</a>
                 </li>
