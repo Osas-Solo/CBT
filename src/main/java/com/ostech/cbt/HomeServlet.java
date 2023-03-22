@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(urlPatterns = {"/home", "/index"})
+@WebServlet(name = "HomeServlet", urlPatterns = {"/home", "/index"})
 public class HomeServlet extends HttpServlet {
     private Candidate candidate;
     private ArrayList<Subject> subjects;
