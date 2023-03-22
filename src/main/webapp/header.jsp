@@ -10,10 +10,8 @@
     <title>CBT | <%=pageTitle%></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <body>
 <div class="container mb-5">
@@ -23,25 +21,25 @@
         <nav class="nav">
             <ul class="nav nav-justified">
                 <li class="nav-item">
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/index">Home</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/index">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/test">Test</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/test">Test</a>
                 </li>
                 <%
-                    if (!candidate.isFound()) {
+                    if (candidate == null) {
                 %>
                 <li class="nav-item">
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/login">Login</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/signup">Signup</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/signup">Signup</a>
                 </li>
                 <%
                     } else {
                 %>
                 <li class="nav-item">
-                    <a class="navbar-link" href="${pageContext.request.contextPath}/logout">Logout</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
                 </li>
                 <%
                     }

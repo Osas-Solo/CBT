@@ -18,7 +18,7 @@ String pageTitle = "Home";
     %>
         <article class="m-5">
             <h3>
-                <a href="${pageContext.request.contextPath}/subject/<%=currentSubject.getName().toLowerCase()%>">
+                <a href="${pageContext.request.contextPath}/test/<%=currentSubject.getName().toLowerCase()%>">
                     <%=currentSubject.getName()%>
                 </a>
             </h3>
