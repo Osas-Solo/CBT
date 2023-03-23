@@ -2,10 +2,7 @@ package com.ostech.cbt.database;
 
 import com.ostech.cbt.model.Subject;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class SubjectManipulator {
@@ -14,8 +11,10 @@ public class SubjectManipulator {
 
         try {
             Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
-            String subjectQuery = String.format("SELECT id, name FROM subjects WHERE id = %d", subjectID);
-            retrieveSubjectInformation(subject, databaseConnection, subjectQuery);
+            String subjectQuery = "SELECT id, name FROM subjects WHERE id = ?";
+            PreparedStatement selectStatement = databaseConnection.prepareStatement(subjectQuery);
+            selectStatement.setInt(1, subjectID);
+            retrieveSubjectInformation(subject, databaseConnection, selectStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,9 +27,10 @@ public class SubjectManipulator {
 
         try {
             Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
-            String subjectQuery = String.format("SELECT id, name " +
-                    "FROM subjects WHERE name = '%s'", subjectName);
-            retrieveSubjectInformation(subject, databaseConnection, subjectQuery);
+            String subjectQuery = "SELECT id, name FROM subjects WHERE name = ?";
+            PreparedStatement selectStatement = databaseConnection.prepareStatement(subjectQuery);
+            selectStatement.setString(1, subjectName);
+            retrieveSubjectInformation(subject, databaseConnection, selectStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,10 +62,8 @@ public class SubjectManipulator {
         return questionsCount;
     }
 
-    private static void retrieveSubjectInformation(Subject subject, Connection databaseConnection, String subjectQuery) throws SQLException {
-        Statement selectStatement = databaseConnection.createStatement();
-
-        ResultSet resultSet = selectStatement.executeQuery(subjectQuery);
+    private static void retrieveSubjectInformation(Subject subject, Connection databaseConnection, PreparedStatement selectStatement) throws SQLException {
+        ResultSet resultSet = selectStatement.executeQuery();
 
         if (resultSet.next()) {
             subject.setId(resultSet.getInt("id"));
