@@ -2,6 +2,7 @@ package com.ostech.cbt;
 
 import com.ostech.cbt.database.CandidateManipulator;
 import com.ostech.cbt.model.Candidate;
+import org.apache.commons.text.StringEscapeUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -30,11 +31,11 @@ public class SignupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String emailAddress = request.getParameter("emailAddress");
-        String password = request.getParameter("password");
-        String passwordConfirmation = request.getParameter("passwordConfirmation");
+        String firstName = cleanseInput(request.getParameter("firstName"));
+        String lastName = cleanseInput(request.getParameter("lastName"));
+        String emailAddress = cleanseInput(request.getParameter("emailAddress"));
+        String password = cleanseInput(request.getParameter("password"));
+        String passwordConfirmation = cleanseInput(request.getParameter("passwordConfirmation"));
 
         candidate = new Candidate();
         candidate.setFirstName(firstName);
@@ -54,6 +55,14 @@ public class SignupServlet extends HttpServlet {
         request.setAttribute("passwordConfirmationErrorMessage", passwordConfirmationErrorMessage);
 
         request.getRequestDispatcher("signup.jsp").forward(request, response);
+    }
+
+    private String cleanseInput(String data) {
+        String cleansedData = data.trim();
+        cleansedData = cleansedData.replaceAll("\\\\", "");
+        cleansedData = StringEscapeUtils.escapeHtml4(cleansedData);
+
+        return cleansedData;
     }
 
     private void validateCandidateSignup(String passwordConfirmation) {
