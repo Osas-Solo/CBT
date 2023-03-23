@@ -2,20 +2,23 @@ package com.ostech.cbt.database;
 
 import com.ostech.cbt.model.Candidate;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class CandidateManipulator {
     public static boolean insertCandidate(Candidate candidate) {
         try {
             Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
-            String insertQuery = String.format("INSERT INTO candidates (id, first_name, last_name, email_address, password) " +
-                    "VALUES (%d, '%s', '%s', '%s', SHA('%s'))", candidate.getId(), candidate.getFirstName(), candidate.getLastName(), candidate.getEmailAddress(), candidate.getPassword());
-            Statement insertStatement = databaseConnection.createStatement();
+            String insertQuery = "INSERT INTO candidates (id, first_name, last_name, email_address, password) VALUES " +
+                    "(?, ?, ?, ?, SHA(?))";
 
-            return insertStatement.execute(insertQuery);
+            PreparedStatement insertStatement = databaseConnection.prepareStatement(insertQuery);
+            insertStatement.setInt(1, candidate.getId());
+            insertStatement.setString(2, candidate.getFirstName());
+            insertStatement.setString(3, candidate.getLastName());
+            insertStatement.setString(4, candidate.getEmailAddress());
+            insertStatement.setString(5, candidate.getPassword());
+
+            return insertStatement.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,8 +31,12 @@ public class CandidateManipulator {
 
         try {
             Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
-            String candidateQuery = String.format("SELECT id, first_name, last_name, email_address, password FROM candidates WHERE id = %d", candidateID);
-            retrieveCandidateInformation(candidate, databaseConnection, candidateQuery);
+            String candidateQuery = "SELECT id, first_name, last_name, email_address, password FROM candidates " +
+                    "WHERE id = ?";
+            PreparedStatement selectStatement = databaseConnection.prepareStatement(candidateQuery);
+            selectStatement.setInt(1, candidateID);
+
+            retrieveCandidateInformation(candidate, databaseConnection, selectStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,9 +49,12 @@ public class CandidateManipulator {
 
         try {
             Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
-            String candidateQuery = String.format("SELECT id, first_name, last_name, email_address, password " +
-                    "FROM candidates WHERE email_address = '%s'", emailAddress);
-            retrieveCandidateInformation(candidate, databaseConnection, candidateQuery);
+            String candidateQuery = "SELECT id, first_name, last_name, email_address, password FROM candidates " +
+                    "WHERE email_address = ?";
+            PreparedStatement selectStatement = databaseConnection.prepareStatement(candidateQuery);
+            selectStatement.setString(1, emailAddress);
+
+            retrieveCandidateInformation(candidate, databaseConnection, selectStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,9 +67,11 @@ public class CandidateManipulator {
 
         try {
             Connection databaseConnection = new DatabaseConfiguration().getDatabaseConnection();
-            String candidateQuery = String.format("SELECT id, first_name, last_name, email_address, password " +
-                    "FROM candidates WHERE email_address = '%s' AND password = SHA('%s')", emailAddress, password);
-            retrieveCandidateInformation(candidate, databaseConnection, candidateQuery);
+            String candidateQuery = "SELECT id, first_name, last_name, email_address, password FROM candidates " +
+                    "WHERE email_address = ? AND password = SHA(?)";
+            PreparedStatement selectStatement = databaseConnection.prepareStatement(candidateQuery);
+            selectStatement.setString(1, emailAddress);
+            selectStatement.setString(2, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,10 +79,9 @@ public class CandidateManipulator {
         return candidate;
     }
 
-    private static void retrieveCandidateInformation(Candidate candidate, Connection databaseConnection, String candidateQuery) throws SQLException {
-        Statement selectStatement = databaseConnection.createStatement();
-
-        ResultSet resultSet = selectStatement.executeQuery(candidateQuery);
+    private static void retrieveCandidateInformation(Candidate candidate, Connection databaseConnection,
+                                                     PreparedStatement selectStatement) throws SQLException {
+        ResultSet resultSet = selectStatement.executeQuery();
 
         if (resultSet.next()) {
             candidate.setId(resultSet.getInt("id"));
