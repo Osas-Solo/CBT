@@ -4,11 +4,12 @@ import com.ostech.cbt.database.CandidateManipulator;
 import com.ostech.cbt.model.Candidate;
 import org.apache.commons.text.StringEscapeUtils;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @WebServlet(name = "SignupServlet", urlPatterns = {"/signup", "/register"})
@@ -31,6 +32,12 @@ public class SignupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
+        processSignupForm(request, response);
+
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
+    }
+
+    private void processSignupForm(HttpServletRequest request, HttpServletResponse response) {
         String firstName = cleanseInput(request.getParameter("firstName"));
         String lastName = cleanseInput(request.getParameter("lastName"));
         String emailAddress = cleanseInput(request.getParameter("emailAddress"));
@@ -53,8 +60,6 @@ public class SignupServlet extends HttpServlet {
         request.setAttribute("emailAddressErrorMessage", emailAddressErrorMessage);
         request.setAttribute("passwordErrorMessage", passwordErrorMessage);
         request.setAttribute("passwordConfirmationErrorMessage", passwordConfirmationErrorMessage);
-
-        request.getRequestDispatcher("signup.jsp").forward(request, response);
     }
 
     private String cleanseInput(String data) {
@@ -97,7 +102,7 @@ public class SignupServlet extends HttpServlet {
     }
 
     private boolean isNameValid(String name) {
-        Pattern nameRegex = Pattern.compile("[A-Z][a-z]+");
+        Pattern nameRegex = Pattern.compile("^[A-Z][a-z]+$");
 
         return nameRegex.matcher(name).matches() && name.length() <= 100;
     }

@@ -41,33 +41,35 @@
         <div class="col-md-4 mb-5 mx-auto">
             <label class="form-label" for="firstName">First Name<span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="firstName" name="firstName" required
-                   placeholder="Enter first name" value="<%=firstName%>">
+                   placeholder="Enter first name" value="<%=firstName%>" oninput="validateSignup()">
             <div class="text-danger" id="firstNameErrorMessage"><%=firstNameErrorMessage%></div>
         </div>
         <div class="col-md-4 mb-5 mx-auto">
             <label class="form-label" for="lastName">Last Name<span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="lastName" name="lastName" required
-                   placeholder="Enter last name" value="<%=lastName%>">
+                   placeholder="Enter last name" value="<%=lastName%>" oninput="validateSignup()">
             <div class="text-danger" id="lastNameErrorMessage"><%=lastNameErrorMessage%></div>
         </div>
         <div class="col-md-4 mb-5 mx-auto">
             <label class="form-label" for="emailAddress">Email Address<span class="text-danger">*</span></label>
             <input type="email" class="form-control" id="emailAddress" name="emailAddress" required
-                   placeholder="Enter email address" value="<%=emailAddress%>">
+                   placeholder="Enter email address" value="<%=emailAddress%>" oninput="validateSignup()">
             <div class="text-danger" id="emailAddressErrorMessage"><%=emailAddressErrorMessage%></div>
         </div>
         <div class="col-md-4 mb-5 mx-auto">
             <label class="form-label" for="password">Password<span class="text-danger">*</span></label>
             <input type="password" class="form-control" id="password" name="password" required
-                   placeholder="Enter password">
+                   placeholder="Enter password" oninput="validateSignup()">
             <div class="text-danger" id="passwordErrorMessage"><%=passwordErrorMessage%></div>
         </div>
         <div class="col-md-4 mb-5 mx-auto">
             <label class="form-label" for="passwordConfirmation">Confirm Password<span class="text-danger">*</span></label>
             <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" required
-                   placeholder="Confirm password">
+                   placeholder="Confirm password" oninput="validateSignup()">
             <div class="text-danger" id="passwordConfirmationErrorMessage"><%=passwordConfirmationErrorMessage%></div>
         </div>
+
+        <script src="${pageContext.request.contextPath}/js/signup-validation.js"></script>
 
         <div class="col-md-4 mb-5 mx-auto">
             <button class="btn btn-primary px-3" type="submit" name="signup">Signup</button>
