@@ -18,7 +18,7 @@ public class CandidateManipulator {
             insertStatement.setString(4, candidate.getEmailAddress());
             insertStatement.setString(5, candidate.getPassword());
 
-            return insertStatement.execute();
+            return insertStatement.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -33,6 +33,15 @@
 
 <%@include file="header.jsp" %>
 
+<%
+    String signupConfirmationDialog = "";
+
+    if (request.getAttribute("signupConfirmationDialog") != null) {
+        signupConfirmationDialog = (String) request.getAttribute("signupConfirmationDialog");
+    }
+%>
+<%=signupConfirmationDialog%>
+
 <div class="text-center mb-5">
     <h1>Signup</h1>
 </div>
@@ -40,33 +49,40 @@
     <form method="post" action="${pageContext.request.contextPath}/signup">
         <div class="col-md-4 mb-5 mx-auto">
             <label class="form-label" for="firstName">First Name<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="firstName" name="firstName" required
+            <input type="text" class="form-control" id="firstName" name="firstName" required pattern="^[A-Z][a-z]+$"
                    placeholder="Enter first name" value="<%=firstName%>" oninput="validateSignup()">
-            <div class="text-danger" id="firstNameErrorMessage"><%=firstNameErrorMessage%></div>
+            <div class="text-danger" id="firstNameErrorMessage"><%=firstNameErrorMessage%>
+            </div>
         </div>
         <div class="col-md-4 mb-5 mx-auto">
             <label class="form-label" for="lastName">Last Name<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="lastName" name="lastName" required
+            <input type="text" class="form-control" id="lastName" name="lastName" required pattern="^[A-Z][a-z]+$"
                    placeholder="Enter last name" value="<%=lastName%>" oninput="validateSignup()">
-            <div class="text-danger" id="lastNameErrorMessage"><%=lastNameErrorMessage%></div>
+            <div class="text-danger" id="lastNameErrorMessage"><%=lastNameErrorMessage%>
+            </div>
         </div>
         <div class="col-md-4 mb-5 mx-auto">
             <label class="form-label" for="emailAddress">Email Address<span class="text-danger">*</span></label>
             <input type="email" class="form-control" id="emailAddress" name="emailAddress" required
-                   placeholder="Enter email address" value="<%=emailAddress%>" oninput="validateSignup()">
-            <div class="text-danger" id="emailAddressErrorMessage"><%=emailAddressErrorMessage%></div>
+                   pattern="^[A-Za-z0-9+_.-]+@(.+\..+)$" placeholder="Enter email address" value="<%=emailAddress%>"
+                   oninput="validateSignup()">
+            <div class="text-danger" id="emailAddressErrorMessage"><%=emailAddressErrorMessage%>
+            </div>
         </div>
         <div class="col-md-4 mb-5 mx-auto">
             <label class="form-label" for="password">Password<span class="text-danger">*</span></label>
             <input type="password" class="form-control" id="password" name="password" required
                    placeholder="Enter password" oninput="validateSignup()">
-            <div class="text-danger" id="passwordErrorMessage"><%=passwordErrorMessage%></div>
+            <div class="text-danger" id="passwordErrorMessage"><%=passwordErrorMessage%>
+            </div>
         </div>
         <div class="col-md-4 mb-5 mx-auto">
-            <label class="form-label" for="passwordConfirmation">Confirm Password<span class="text-danger">*</span></label>
+            <label class="form-label" for="passwordConfirmation">Confirm Password<span
+                    class="text-danger">*</span></label>
             <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" required
                    placeholder="Confirm password" oninput="validateSignup()">
-            <div class="text-danger" id="passwordConfirmationErrorMessage"><%=passwordConfirmationErrorMessage%></div>
+            <div class="text-danger" id="passwordConfirmationErrorMessage"><%=passwordConfirmationErrorMessage%>
+            </div>
         </div>
 
         <script src="${pageContext.request.contextPath}/js/signup-validation.js"></script>

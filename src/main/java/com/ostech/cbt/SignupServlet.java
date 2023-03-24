@@ -32,12 +32,16 @@ public class SignupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        processSignupForm(request, response);
+        processSignupForm(request);
+
+        if (areSignupDetailsValid()) {
+            completeCandidateSignup(request);
+        }
 
         request.getRequestDispatcher("signup.jsp").forward(request, response);
     }
 
-    private void processSignupForm(HttpServletRequest request, HttpServletResponse response) {
+    private void processSignupForm(HttpServletRequest request) {
         String firstName = cleanseInput(request.getParameter("firstName"));
         String lastName = cleanseInput(request.getParameter("lastName"));
         String emailAddress = cleanseInput(request.getParameter("emailAddress"));
@@ -87,7 +91,7 @@ public class SignupServlet extends HttpServlet {
             Candidate retrievedCandidate = CandidateManipulator.getCandidate(candidate.getEmailAddress());
 
             if (retrievedCandidate.getEmailAddress() != null) {
-                emailAddressErrorMessage = String.format("Sorry, the email address, %s is already in use", candidate.getEmailAddress());
+                emailAddressErrorMessage = String.format("Sorry, the email address %s is already in use", candidate.getEmailAddress());
             }
         }
 
@@ -99,6 +103,12 @@ public class SignupServlet extends HttpServlet {
         if (!isPasswordConfirmed(candidate.getPassword(), passwordConfirmation)) {
             passwordConfirmationErrorMessage = "Sorry, passwords do not match";
         }
+    }
+
+    private boolean areSignupDetailsValid() {
+        return firstNameErrorMessage.length() == 0 && lastNameErrorMessage.length() == 0 &&
+                emailAddressErrorMessage.length() == 0 && passwordErrorMessage.length() == 0 &&
+                passwordConfirmationErrorMessage.length() == 0;
     }
 
     private boolean isNameValid(String name) {
@@ -124,5 +134,18 @@ public class SignupServlet extends HttpServlet {
 
     private boolean isPasswordConfirmed(String password, String passwordConfirmation) {
         return password.equals(passwordConfirmation);
+    }
+
+    private void completeCandidateSignup(HttpServletRequest request) {
+        if (CandidateManipulator.insertCandidate(candidate)) {
+            String loginPage = getServletContext().getContextPath() + "/login";
+            String signupConfirmationDialog = String.format("<script>" +
+                    "if (confirm('You have successfully signed up. You may now proceed to login')) {" +
+                    "window.location.replace('%s')" +
+                    "} else {" +
+                    "window.location.replace('%s')" +
+                    "}</script>", loginPage, loginPage);
+            request.setAttribute("signupConfirmationDialog", signupConfirmationDialog);
+        }
     }
 }
