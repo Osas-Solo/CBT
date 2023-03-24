@@ -24,7 +24,6 @@ public class SignupServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-
         request.getRequestDispatcher("signup.jsp").forward(request, response);
     }
 
