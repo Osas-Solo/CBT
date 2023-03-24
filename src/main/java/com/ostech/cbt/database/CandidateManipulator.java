@@ -72,6 +72,8 @@ public class CandidateManipulator {
             PreparedStatement selectStatement = databaseConnection.prepareStatement(candidateQuery);
             selectStatement.setString(1, emailAddress);
             selectStatement.setString(2, password);
+
+            retrieveCandidateInformation(candidate, databaseConnection, selectStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
