@@ -22,7 +22,7 @@
             <%=currentSubject.getName()%>
         </h3>
         <p class="btn btn-primary mt-3">
-            <a href="${pageContext.request.contextPath}/test/<%=currentSubject.getName().toLowerCase()%>">
+            <a href="${pageContext.request.contextPath}/subject/<%=currentSubject.getName().toLowerCase()%>">
                 Take Test
             </a>
         </p>
