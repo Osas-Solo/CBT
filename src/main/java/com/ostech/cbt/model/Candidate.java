@@ -55,12 +55,18 @@ public class Candidate {
         return getLastName().toUpperCase() + " " + getFirstName();
     }
 
+    public boolean isFound() {
+        return getEmailAddress() != null;
+    }
+
     public static Candidate retrieveCandidateDetailsFromSession(HttpServletRequest request) {
+        Candidate candidate = new Candidate();
+        
         if (request.getSession().getAttribute("candidateID") != null) {
-            int candidateID = Integer.parseInt((String) request.getSession().getAttribute("candidateID"));
-            return CandidateManipulator.getCandidate(candidateID);
+            int candidateID = (int) request.getSession().getAttribute("candidateID");
+            candidate = CandidateManipulator.getCandidate(candidateID);
         }
 
-        return null;
+        return candidate;
     }
 }

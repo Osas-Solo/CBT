@@ -25,7 +25,7 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/test">Test</a>
         </li>
         <%
-            if (candidate == null) {
+            if (!candidate.isFound()) {
         %>
         <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>

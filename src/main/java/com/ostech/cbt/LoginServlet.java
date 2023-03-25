@@ -19,12 +19,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+
+        request.setAttribute("candidate", new Candidate());
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+
+        request.setAttribute("candidate", new Candidate());
 
         processLoginForm(request);
 
@@ -57,13 +61,13 @@ public class LoginServlet extends HttpServlet {
     private void validateCandidateLogin(HttpServletRequest request) {
         Candidate retrievedCandidate = CandidateManipulator.getCandidate(candidate.getEmailAddress());
 
-        if (retrievedCandidate.getEmailAddress() == null) {
+        if (!retrievedCandidate.isFound()) {
             emailAddressErrorMessage = String.format("Sorry, no candidate with the email address %s could be found", candidate.getEmailAddress());
         } else {
             emailAddressErrorMessage = "";
             retrievedCandidate = CandidateManipulator.getCandidate(candidate.getEmailAddress(), candidate.getPassword());
 
-            if (retrievedCandidate.getEmailAddress() == null) {
+            if (!retrievedCandidate.isFound()) {
                 passwordErrorMessage = "Sorry, the password you have entered is incorrect";
             } else {
                 passwordErrorMessage = "";

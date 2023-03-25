@@ -24,12 +24,17 @@ public class SignupServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+
+        request.setAttribute("candidate", new Candidate());
+
         request.getRequestDispatcher("signup.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+
+        request.setAttribute("candidate", new Candidate());
 
         processSignupForm(request);
 
@@ -89,7 +94,7 @@ public class SignupServlet extends HttpServlet {
         } else {
             Candidate retrievedCandidate = CandidateManipulator.getCandidate(candidate.getEmailAddress());
 
-            if (retrievedCandidate.getEmailAddress() != null) {
+            if (retrievedCandidate.isFound()) {
                 emailAddressErrorMessage = String.format("Sorry, the email address %s is already in use", candidate.getEmailAddress());
             }
         }
