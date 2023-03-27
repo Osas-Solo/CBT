@@ -2,13 +2,14 @@ package com.ostech.cbt;
 
 import com.ostech.cbt.database.CandidateManipulator;
 import com.ostech.cbt.model.Candidate;
-import org.apache.commons.text.StringEscapeUtils;
+import com.ostech.cbt.model.InputUtils;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.regex.Pattern;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login", "/signin"})
 public class LoginServlet extends HttpServlet {
@@ -36,8 +37,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void processLoginForm(HttpServletRequest request) {
-        String emailAddress = cleanseInput(request.getParameter("emailAddress"));
-        String password = cleanseInput(request.getParameter("password"));
+        String emailAddress = InputUtils.cleanseInput(request.getParameter("emailAddress"));
+        String password = InputUtils.cleanseInput(request.getParameter("password"));
 
         candidate = new Candidate();
         candidate.setEmailAddress(emailAddress);
@@ -48,14 +49,6 @@ public class LoginServlet extends HttpServlet {
         request.setAttribute("emailAddress", emailAddress);
         request.setAttribute("emailAddressErrorMessage", emailAddressErrorMessage);
         request.setAttribute("passwordErrorMessage", passwordErrorMessage);
-    }
-
-    private String cleanseInput(String data) {
-        String cleansedData = data.trim();
-        cleansedData = cleansedData.replaceAll("\\\\", "");
-        cleansedData = StringEscapeUtils.escapeHtml4(cleansedData);
-
-        return cleansedData;
     }
 
     private void validateCandidateLogin(HttpServletRequest request) {
@@ -85,7 +78,7 @@ public class LoginServlet extends HttpServlet {
                     "window.location.replace('%s')" +
                     "}</script>", testPage, testPage);
             request.setAttribute("loginConfirmationDialog", loginConfirmationDialog);
-         }
+        }
     }
 
     private boolean areLoginDetailsValid() {

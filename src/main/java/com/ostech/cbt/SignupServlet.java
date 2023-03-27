@@ -2,7 +2,7 @@ package com.ostech.cbt;
 
 import com.ostech.cbt.database.CandidateManipulator;
 import com.ostech.cbt.model.Candidate;
-import org.apache.commons.text.StringEscapeUtils;
+import com.ostech.cbt.model.InputUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,11 +46,11 @@ public class SignupServlet extends HttpServlet {
     }
 
     private void processSignupForm(HttpServletRequest request) {
-        String firstName = cleanseInput(request.getParameter("firstName"));
-        String lastName = cleanseInput(request.getParameter("lastName"));
-        String emailAddress = cleanseInput(request.getParameter("emailAddress"));
-        String password = cleanseInput(request.getParameter("password"));
-        String passwordConfirmation = cleanseInput(request.getParameter("passwordConfirmation"));
+        String firstName = InputUtils.cleanseInput(request.getParameter("firstName"));
+        String lastName = InputUtils.cleanseInput(request.getParameter("lastName"));
+        String emailAddress = InputUtils.cleanseInput(request.getParameter("emailAddress"));
+        String password = InputUtils.cleanseInput(request.getParameter("password"));
+        String passwordConfirmation = InputUtils.cleanseInput(request.getParameter("passwordConfirmation"));
 
         candidate = new Candidate();
         candidate.setFirstName(firstName);
@@ -68,14 +68,6 @@ public class SignupServlet extends HttpServlet {
         request.setAttribute("emailAddressErrorMessage", emailAddressErrorMessage);
         request.setAttribute("passwordErrorMessage", passwordErrorMessage);
         request.setAttribute("passwordConfirmationErrorMessage", passwordConfirmationErrorMessage);
-    }
-
-    private String cleanseInput(String data) {
-        String cleansedData = data.trim();
-        cleansedData = cleansedData.replaceAll("\\\\", "");
-        cleansedData = StringEscapeUtils.escapeHtml4(cleansedData);
-
-        return cleansedData;
     }
 
     private void validateCandidateSignup(String passwordConfirmation) {
