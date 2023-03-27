@@ -40,7 +40,8 @@
         if (subject.isFound()) {
             ArrayList<Question> questions = (ArrayList<Question>) request.getAttribute("questions");
     %>
-    <h2 class="text-center"><%=subject.getName()%>
+    <h2 class="text-center">
+        <%=subject.getName()%>
     </h2>
     <div class="row mt-5">
         <form method="post" action="${pageContext.request.contextPath}/result">
@@ -58,27 +59,27 @@
                            for="question<%=questionCount%>"><%=currentQuestion.getQuestion()%>
                     </label>
                 </div>
-            </div>
-            <%
-                char optionLabel = 'A';
-                for (Entry<Character, String> currentOption : currentQuestion.getOptions().entrySet()) {
-            %>
-            <div class="row mb-3">
-                <p class="col-1">
-                    <%=optionLabel%>.
-                </p>
-                <div class="col-11 form-check">
-                    <label class="form-check-label">
-                        <input type="radio" id="answer<%=questionCount%>" name="answer<%=questionCount%>"
-                               value="<%=currentOption.getValue()%>">
-                        <%=currentOption.getValue()%>
-                    </label>
+                <%
+                    char optionLabel = 'A';
+                    for (Entry<Character, String> currentOption : currentQuestion.getOptions().entrySet()) {
+                %>
+                <div class="row mb-3">
+                    <p class="col-1">
+                        <%=optionLabel%>.
+                    </p>
+                    <div class="col-11 form-check">
+                        <label class="form-check-label">
+                            <input type="radio" id="answer<%=questionCount%>" name="answer<%=questionCount%>"
+                                   value="<%=currentOption.getValue()%>">
+                            <%=currentOption.getValue()%>
+                        </label>
+                    </div>
                 </div>
+                <%
+                        optionLabel++;
+                    }
+                %>
             </div>
-            <%
-                    optionLabel++;
-                }
-            %>
             <%
                 }
             %>
