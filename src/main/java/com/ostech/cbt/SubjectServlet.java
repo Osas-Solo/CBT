@@ -42,11 +42,6 @@ public class SubjectServlet extends HttpServlet {
         request.getRequestDispatcher("subject.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
     private boolean isSpecificSubjectRequested(HttpServletRequest request) {
         return request.getParameter("name") != null;
     }
