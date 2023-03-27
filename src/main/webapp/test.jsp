@@ -43,6 +43,14 @@
     <h2 class="text-center">
         <%=subject.getName()%>
     </h2>
+
+    <div class="col-3 text-center float-end fixed-top mt-5 p-5">
+        <%
+        int testTime = (int) request.getAttribute("testTime");
+        %>
+        <h3>Time Left: <span style="display: none" id="timeLeft"><%=testTime%></span></h3>
+    </div>
+    <script src="js/test-timer-updater.js"></script>
     <div class="row mt-5">
         <form method="post" action="${pageContext.request.contextPath}/result">
             <%
@@ -50,12 +58,12 @@
                 for (Question currentQuestion : questions) {
                     questionCount++;
             %>
-            <div class="col-12 mb-5">
+            <div class="col-32 mb-5">
                 <div class="row">
-                    <p class="col-1 text-end">
+                    <p class="col-3 text-end">
                         <%=questionCount%>.
                     </p>
-                    <label class="form-label col-11"
+                    <label class="form-label col-9"
                            for="question<%=questionCount%>"><%=currentQuestion.getQuestion()%>
                     </label>
                 </div>
@@ -64,14 +72,14 @@
                     for (Entry<Character, String> currentOption : currentQuestion.getOptions().entrySet()) {
                 %>
                 <div class="row mb-3">
-                    <div class="col-1 form-check text-end">
+                    <div class="col-3 form-check text-end">
                         <label class="form-check-label">
                             <%=optionLabel%>.
                             <input type="radio" id="answer<%=questionCount%>" name="answer<%=questionCount%>"
                                    value="<%=currentOption.getKey()%>">
                         </label>
                     </div>
-                    <p class="col-11">
+                    <p class="col-9">
                         <%=currentOption.getValue()%>
                     </p>
                 </div>
