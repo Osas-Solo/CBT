@@ -2,13 +2,13 @@ package com.ostech.cbt.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Question {
     private int id;
     private int subjectID;
     private String question;
-    private HashMap<Character, String> options;
+    private LinkedHashMap<Character, String> options;
     private char selectedOption;
 
     public int getId() {
@@ -35,11 +35,11 @@ public class Question {
         this.question = question;
     }
 
-    public HashMap<Character, String> getOptions() {
+    public LinkedHashMap<Character, String> getOptions() {
         return options;
     }
 
-    public void setOptions(HashMap<Character, String> options) {
+    public void setOptions(LinkedHashMap<Character, String> options) {
         this.options = options;
     }
 
@@ -55,7 +55,7 @@ public class Question {
         ArrayList<Character> optionList = new ArrayList<>(getOptions().keySet());
 
         Collections.shuffle(optionList);
-        HashMap<Character, String> rearrangedOptions = new HashMap<>();
+        LinkedHashMap<Character, String> rearrangedOptions = new LinkedHashMap<>();
 
         for (Character currentOption : optionList) {
             rearrangedOptions.put(currentOption, options.get(currentOption));

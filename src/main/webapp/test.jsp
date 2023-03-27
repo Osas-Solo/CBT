@@ -52,7 +52,7 @@
             %>
             <div class="col-12 mb-5">
                 <div class="row">
-                    <p class="col-1">
+                    <p class="col-1 text-end">
                         <%=questionCount%>.
                     </p>
                     <label class="form-label col-11"
@@ -64,16 +64,16 @@
                     for (Entry<Character, String> currentOption : currentQuestion.getOptions().entrySet()) {
                 %>
                 <div class="row mb-3">
-                    <p class="col-1">
-                        <%=optionLabel%>.
-                    </p>
-                    <div class="col-11 form-check">
+                    <div class="col-1 form-check text-end">
                         <label class="form-check-label">
+                            <%=optionLabel%>.
                             <input type="radio" id="answer<%=questionCount%>" name="answer<%=questionCount%>"
-                                   value="<%=currentOption.getValue()%>">
-                            <%=currentOption.getValue()%>
+                                   value="<%=currentOption.getKey()%>">
                         </label>
                     </div>
+                    <p class="col-11">
+                        <%=currentOption.getValue()%>
+                    </p>
                 </div>
                 <%
                         optionLabel++;
@@ -84,8 +84,8 @@
                 }
             %>
 
-            <div class="col-md-4 mb-5 mx-auto">
-                <button class="btn btn-primary px-3" type="submit" name="submit">Submit</button>
+            <div class="col-md-4 mb-5 mx-auto text-center">
+                <button class="btn btn-primary px-3" type="button" id="submitButton">Submit</button>
             </div>
         </form>
     </div>

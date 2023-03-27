@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class QuestionManipulator {
     public static ArrayList<Question> getQuestions(int subjectID, int numberOfQuestions) {
@@ -27,7 +27,7 @@ public class QuestionManipulator {
                 currentQuestion.setId(resultSet.getInt("id"));
                 currentQuestion.setSubjectID(resultSet.getInt("subject_id"));
                 currentQuestion.setQuestion(resultSet.getString("question"));
-                HashMap<Character, String> options = new HashMap<>();
+                LinkedHashMap<Character, String> options = new LinkedHashMap<>();
 
                 final int firstOptionColumnIndex = 4;
                 final int lastOptionColumnIndex = 7;
