@@ -37,14 +37,13 @@ public class TestServlet extends HttpServlet {
 
         if (subject.isFound()) {
             questions = retrieveQuestions(request);
+            request.getSession().setAttribute("subject", subject);
             request.getSession().setAttribute("questions", questions);
             int testTime = (int) (questions.size() * 60 * 1.5);
             request.setAttribute("testTime", testTime);
         }
 
         request.setAttribute("candidate", candidate);
-        request.setAttribute("subject", subject);
-        request.setAttribute("questions", questions);
 
         request.getRequestDispatcher("test.jsp").forward(request, response);
     }

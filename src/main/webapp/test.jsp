@@ -24,7 +24,7 @@
 </script>
 <%
 } else {
-    Subject subject = (Subject) request.getAttribute("subject");
+    Subject subject = (Subject) session.getAttribute("subject");
 
     if (!subject.isFound()) {
 %>
@@ -38,7 +38,7 @@
 <div>
     <%
         if (subject.isFound()) {
-            ArrayList<Question> questions = (ArrayList<Question>) request.getAttribute("questions");
+            ArrayList<Question> questions = (ArrayList<Question>) session.getAttribute("questions");
     %>
     <h2 class="text-center">
         <%=subject.getName()%>
@@ -54,17 +54,17 @@
     <div class="row mt-5">
         <form method="post" action="${pageContext.request.contextPath}/result">
             <%
-                int questionCount = 0;
+                int questionNumber = 0;
                 for (Question currentQuestion : questions) {
-                    questionCount++;
+                    questionNumber++;
             %>
             <div class="col-32 mb-5">
                 <div class="row">
                     <p class="col-3 text-end">
-                        <%=questionCount%>.
+                        <%=questionNumber%>.
                     </p>
                     <label class="form-label col-9"
-                           for="question<%=questionCount%>"><%=currentQuestion.getQuestion()%>
+                           for="question<%=questionNumber%>"><%=currentQuestion.getQuestion()%>
                     </label>
                 </div>
                 <%
@@ -75,8 +75,9 @@
                     <div class="col-3 form-check text-end">
                         <label class="form-check-label">
                             <%=optionLabel%>.
-                            <input type="radio" id="answer<%=questionCount%>" name="answer<%=questionCount%>"
-                                   value="<%=currentOption.getKey()%>">
+                            <input type="radio" id="answer<%=questionNumber%>" name="answer<%=questionNumber%>"
+                                   value="<%=currentOption.getKey()%>"
+                                   oninput="updateAnswer(<%=questionNumber%>, '<%=currentOption.getKey()%>')">
                         </label>
                     </div>
                     <p class="col-9">
@@ -96,6 +97,7 @@
                 <button class="btn btn-primary px-3" type="button" id="submitButton">Submit</button>
             </div>
             <span class="d-none" id="resultPage">${pageContext.request.contextPath}/result</span>
+            <script src="js/answer-updater.js"></script>
             <script>
                 setTimeout(submitTest, <%=testTime + 1%> * 1000);
             </script>
