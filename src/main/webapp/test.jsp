@@ -95,6 +95,10 @@
             <div class="col-md-4 mb-5 mx-auto text-center">
                 <button class="btn btn-primary px-3" type="button" id="submitButton">Submit</button>
             </div>
+            <span class="d-none" id="resultPage">${pageContext.request.contextPath}/result</span>
+            <script>
+                setTimeout(submitTest, <%=testTime + 1%> * 1000);
+            </script>
         </form>
     </div>
     <%

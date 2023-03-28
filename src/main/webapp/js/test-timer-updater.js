@@ -15,4 +15,14 @@ function updateTimer() {
     timeLeft.style.display = "";
 }
 
+function submitTest() {
+    const resultPage = document.getElementById("resultPage").innerHTML;
+
+    if (confirm("Time up. You may now see your result")) {
+        window.location.replace(resultPage);
+    } else {
+        window.location.replace(resultPage);
+    }
+}
+
 setInterval(updateTimer, 1000);
