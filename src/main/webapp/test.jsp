@@ -94,33 +94,40 @@
             %>
 
             <div class="mb-5 mx-auto text-center">
-                <ul class="pagination">
+                <ul class="pagination justify-content-center">
                     <li class="page-item">
-                        <button type="button" class="page-link btn btn-primary me-3" onclick="displayPreviousQuestion()">Previous</button>
+                        <button type="button" class="page-link btn btn-primary me-3"
+                                onclick="displayPreviousQuestion()">Previous
+                        </button>
                     </li>
                     <%
                         for (int i = 1; i <= questions.size(); i++) {
                     %>
                     <li class="page-item">
-                        <button type="button" class="page-link btn btn-primary me-3" onclick="displayQuestion(<%=i%>)"><%=i%></button>
+                        <button type="button" class="page-link btn btn-primary me-3"
+                                onclick="displayQuestion(<%=i%>)"><%=i%>
+                        </button>
                     </li>
                     <%
                         }
                     %>
                     <li class="page-item">
-                        <button type="button" class="page-link btn btn-primary me-3" onclick="displayNextQuestion()">Next</button>
+                        <button type="button" class="page-link btn btn-primary me-3" onclick="displayNextQuestion()">
+                            Next
+                        </button>
                     </li>
                 </ul>
             </div>
 
+            <span class="d-none" id="resultPage">${pageContext.request.contextPath}/result</span>
+
             <div class="col-md-4 mb-5 mx-auto text-center">
-                <button class="btn btn-primary px-3" type="button" id="submitButton">Submit</button>
+                <button id="submitButton" class="btn btn-primary px-3" type="button" onclick="submitTest()" disabled>Submit</button>
             </div>
             <script src="js/question-navigator.js"></script>
-            <span class="d-none" id="resultPage">${pageContext.request.contextPath}/result</span>
             <script src="js/answer-updater.js"></script>
             <script>
-                setTimeout(submitTest, <%=testTime + 1%> * 1000);
+                setTimeout(submitTestOnTimeUp, <%=testTime + 1%> * 1000);
             </script>
         </form>
     </div>

@@ -15,12 +15,20 @@ function updateTimer() {
     timeLeft.style.display = "";
 }
 
-function submitTest() {
+function submitTestOnTimeUp() {
     const resultPage = document.getElementById("resultPage").innerHTML;
 
     if (confirm("Time up. You may now see your result")) {
         window.location.replace(resultPage);
     } else {
+        window.location.replace(resultPage);
+    }
+}
+
+function submitTest() {
+    const resultPage = document.getElementById("resultPage").innerHTML;
+
+    if (confirm("Are you sure you want to submit now?")) {
         window.location.replace(resultPage);
     }
 }
