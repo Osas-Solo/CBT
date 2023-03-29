@@ -46,7 +46,7 @@
 
     <div class="col-3 text-center float-end fixed-top mt-5 p-5">
         <%
-        int testTime = (int) request.getAttribute("testTime");
+            int testTime = (int) request.getAttribute("testTime");
         %>
         <h3>Time Left: <span style="display: none" id="timeLeft"><%=testTime%></span></h3>
     </div>
@@ -58,7 +58,7 @@
                 for (Question currentQuestion : questions) {
                     questionNumber++;
             %>
-            <div class="col-32 mb-5">
+            <div class="questions col-12 mb-5" style="display: none">
                 <div class="row">
                     <p class="col-3 text-end">
                         <%=questionNumber%>.
@@ -93,9 +93,30 @@
                 }
             %>
 
+            <div class="mb-5 mx-auto text-center">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <button type="button" class="page-link btn btn-primary me-3" onclick="displayPreviousQuestion()">Previous</button>
+                    </li>
+                    <%
+                        for (int i = 1; i <= questions.size(); i++) {
+                    %>
+                    <li class="page-item">
+                        <button type="button" class="page-link btn btn-primary me-3" onclick="displayQuestion(<%=i%>)"><%=i%></button>
+                    </li>
+                    <%
+                        }
+                    %>
+                    <li class="page-item">
+                        <button type="button" class="page-link btn btn-primary me-3" onclick="displayNextQuestion()">Next</button>
+                    </li>
+                </ul>
+            </div>
+
             <div class="col-md-4 mb-5 mx-auto text-center">
                 <button class="btn btn-primary px-3" type="button" id="submitButton">Submit</button>
             </div>
+            <script src="js/question-navigator.js"></script>
             <span class="d-none" id="resultPage">${pageContext.request.contextPath}/result</span>
             <script src="js/answer-updater.js"></script>
             <script>
