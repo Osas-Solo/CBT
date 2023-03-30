@@ -1,4 +1,6 @@
 const questions = document.getElementsByClassName("questions");
+const previousQuestionButton = document.getElementById("previousQuestionButton");
+const nextQuestionButton = document.getElementById("nextQuestionButton");
 const submitButton = document.getElementById("submitButton");
 
 let currentQuestionNumber = 1;
@@ -15,8 +17,13 @@ function displayQuestion(questionNumber) {
 
     if (currentQuestionNumber == questions.length) {
         submitButton.removeAttribute("disabled");
+        nextQuestionButton.setAttribute("disabled", "");
+    } else if (questionNumber == 1) {
+        previousQuestionButton.setAttribute("disabled", "");
     } else {
         submitButton.setAttribute("disabled", "")
+        previousQuestionButton.removeAttribute("disabled");
+        nextQuestionButton.removeAttribute("disabled");
     }
 }
 

@@ -96,7 +96,7 @@
             <div class="mb-5 mx-auto text-center">
                 <ul class="pagination justify-content-center">
                     <li class="page-item">
-                        <button type="button" class="page-link btn btn-primary me-3"
+                        <button type="button" id="previousQuestionButton" class="page-link btn btn-primary me-3"
                                 onclick="displayPreviousQuestion()">Previous
                         </button>
                     </li>
@@ -112,7 +112,7 @@
                         }
                     %>
                     <li class="page-item">
-                        <button type="button" class="page-link btn btn-primary me-3" onclick="displayNextQuestion()">
+                        <button type="button" id="nextQuestionButton" class="page-link btn btn-primary me-3" onclick="displayNextQuestion()">
                             Next
                         </button>
                     </li>
