@@ -1,7 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.ostech.cbt.model.Subject" %>
 <%@ page import="com.ostech.cbt.model.Question" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="java.util.Map.Entry" %>
 
 <%!

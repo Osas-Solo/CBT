@@ -31,15 +31,15 @@ public class Answer {
         this.correctOption = correctOption;
     }
 
-    public boolean isCandidateRight() {
-        return getCorrectOption() == getQuestion().getSelectedOption();
+    public boolean isCandidateRight(Question question) {
+        return question.getId() == getQuestion().getId() && getCorrectOption() == question.getSelectedOption();
     }
 
-    public static int numberOfCorrectAnswers(ArrayList<Answer> answers) {
+    public static int numberOfCorrectAnswers(ArrayList<Question> questions, ArrayList<Answer> answers) {
         int correctAnswersCount = 0;
 
-        for (Answer currentAnswer: answers) {
-            if (currentAnswer.isCandidateRight()) {
+        for (int i = 0; i < answers.size(); i++) {
+            if (answers.get(i).isCandidateRight(questions.get(i))) {
                 correctAnswersCount++;
             }
         }
