@@ -42,10 +42,13 @@ public class ResultServlet extends HttpServlet {
             request.setAttribute("answers", answers);
             request.setAttribute("numberOfQuestions", numberOfQuestions);
             request.setAttribute("numberOfCorrectAnswers", numberOfCorrectAnswers);
+
+            request.setAttribute("candidate", candidate);
+
+            request.getRequestDispatcher("result.jsp").forward(request, response);
+        } else {
+            String testPage = getServletContext().getContextPath() + "/test";
+            response.sendRedirect(testPage);
         }
-
-        request.setAttribute("candidate", candidate);
-
-        request.getRequestDispatcher("result.jsp").forward(request, response);
     }
 }
