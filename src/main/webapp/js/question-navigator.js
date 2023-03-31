@@ -17,9 +17,11 @@ function displayQuestion(questionNumber) {
 
     if (currentQuestionNumber == questions.length) {
         submitButton.removeAttribute("disabled");
+        previousQuestionButton.removeAttribute("disabled");
         nextQuestionButton.setAttribute("disabled", "");
     } else if (questionNumber == 1) {
         previousQuestionButton.setAttribute("disabled", "");
+        nextQuestionButton.removeAttribute("disabled");
     } else {
         submitButton.setAttribute("disabled", "")
         previousQuestionButton.removeAttribute("disabled");

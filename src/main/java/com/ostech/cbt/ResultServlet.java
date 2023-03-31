@@ -25,8 +25,12 @@ public class ResultServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
+        subject = new Subject();
         candidate = Candidate.retrieveCandidateDetailsFromSession(request);
-        subject = (Subject) request.getSession().getAttribute("subject");
+
+        if (request.getSession().getAttribute("subject") != null) {
+            subject = (Subject) request.getSession().getAttribute("subject");
+        }
 
         if (subject.isFound()) {
             questions = (ArrayList<Question>) request.getSession().getAttribute("questions");
