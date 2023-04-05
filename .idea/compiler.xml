@@ -10,8 +10,5 @@
         <module name="CBT" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="CBT" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
