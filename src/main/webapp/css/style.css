@@ -1,0 +1,56 @@
+* {
+    font-family: Verdana, Arial, sans-serif;
+    --main-colour: #62a92a;
+    --alternate-colour: #4a8020;
+}
+
+header, nav {
+    background-color: #ffffff;
+}
+
+header a, header a:hover, header a:visited, header a:focus {
+    color: var(--main-colour);
+}
+
+a, a:hover, a:visited, a:active, a:focus {
+    color: var(--main-colour);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.nav-item:hover {
+    background-color: var(--main-colour);
+    color: #ffffff;
+}
+
+.nav-item a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--main-colour);
+}
+
+button, .btn, .btn-primary,
+button:hover, button:focus, button:active,
+.btn:hover, .btn:focus, .btn:active,
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    padding: 5px 20px;
+    border: transparent;
+    border-radius: 20px;
+    background-color: var(--main-colour) !important;
+    color: #ffffff;
+}
+
+button:active, .btn:active, .btn-primary:active {
+    background-color: var(--alternate-colour) !important;
+}
+
+.btn a, .btn a:hover, .btn a:visited, .btn a:active, .btn a:focus {
+    color: #ffffff;
+    text-decoration: none;
+}
