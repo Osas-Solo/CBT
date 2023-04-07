@@ -8,11 +8,10 @@
 <%@include file="header.jsp" %>
 
 <script>
-    let currentPage = window.location.toString();
-    currentPage = currentPage.slice(0, currentPage.lastIndexOf("/"));
+    const currentPage = window.location.toString();
     const homePage = "${pageContext.request.contextPath}/index";
 
-    if (currentPage.endsWith("${pageContext.request.contextPath}")) {
+    if (currentPage.endsWith("${pageContext.request.contextPath}/")) {
         window.location.replace(homePage);
     }
 </script>
