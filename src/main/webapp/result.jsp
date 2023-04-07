@@ -47,7 +47,7 @@
         <%=candidate.getFullName()%>'s <%=subject.getName()%> Result
     </h2>
 
-    <div class="col-3 text-center float-end fixed-top mt-5 p-5">
+    <div class="col-3 text-center fixed-top mt-5 p-5">
         <h3>Test Score: <%=numberOfCorrectAnswers%>/<%=numberOfQuestions%>
         </h3>
     </div>

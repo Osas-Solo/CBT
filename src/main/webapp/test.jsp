@@ -43,7 +43,7 @@
         <%=subject.getName()%>
     </h2>
 
-    <div class="col-3 text-center float-end fixed-top mt-5 p-5">
+    <div class="z-n1 text-end fixed-top mt-5 p-5">
         <%
             int testTime = (int) request.getAttribute("testTime");
         %>
@@ -93,9 +93,9 @@
             %>
 
             <div class="mb-5 mx-auto text-center">
-                <ul class="pagination justify-content-center">
+                <ul class="pagination flex-wrap justify-content-center">
                     <li class="page-item">
-                        <button type="button" id="previousQuestionButton" class="page-link btn btn-primary me-3"
+                        <button type="button" id="previousQuestionButton" class="page-link btn btn-primary me-3 mt-3"
                                 onclick="displayPreviousQuestion()">Previous
                         </button>
                     </li>
@@ -103,7 +103,7 @@
                         for (int i = 1; i <= questions.size(); i++) {
                     %>
                     <li class="page-item">
-                        <button type="button" class="page-link btn btn-primary me-3"
+                        <button type="button" class="page-link btn btn-primary me-3 mt-3"
                                 onclick="displayQuestion(<%=i%>)"><%=i%>
                         </button>
                     </li>
@@ -111,7 +111,8 @@
                         }
                     %>
                     <li class="page-item">
-                        <button type="button" id="nextQuestionButton" class="page-link btn btn-primary me-3" onclick="displayNextQuestion()">
+                        <button type="button" id="nextQuestionButton" class="page-link btn btn-primary me-3 mt-3"
+                                onclick="displayNextQuestion()">
                             Next
                         </button>
                     </li>
