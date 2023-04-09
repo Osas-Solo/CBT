@@ -73,9 +73,9 @@ public class LoginServlet extends HttpServlet {
             String testPage = getServletContext().getContextPath() + "/test";
             String loginConfirmationDialog = String.format("<script>" +
                     "if (confirm('You have successfully logged in. You may now proceed to take a test')) {" +
-                    "window.location.replace('%s')" +
+                        "window.location.replace('%s')" +
                     "} else {" +
-                    "window.location.replace('%s')" +
+                        "window.location.replace('%s')" +
                     "}</script>", testPage, testPage);
             request.setAttribute("loginConfirmationDialog", loginConfirmationDialog);
         }

@@ -16,25 +16,20 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ResultServlet", urlPatterns = {"/result"})
 public class ResultServlet extends HttpServlet {
-    private Candidate candidate;
-    private Subject subject;
-    private ArrayList<Question> questions;
-    private ArrayList<Answer> answers;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        subject = new Subject();
-        candidate = Candidate.retrieveCandidateDetailsFromSession(request);
+        Subject subject = new Subject();
+        Candidate candidate = Candidate.retrieveCandidateDetailsFromSession(request);
 
         if (request.getSession().getAttribute("subject") != null) {
             subject = (Subject) request.getSession().getAttribute("subject");
         }
 
         if (subject.isFound()) {
-            questions = (ArrayList<Question>) request.getSession().getAttribute("questions");
-            answers = AnswerManipulator.getAnswers(questions);
+            ArrayList<Question> questions = (ArrayList<Question>) request.getSession().getAttribute("questions");
+            ArrayList<Answer> answers = AnswerManipulator.getAnswers(questions);
             answers = Answer.reorderAnswersToMatchQuestions(questions, answers);
             int numberOfQuestions = Question.numberOfQuestions(questions);
             int numberOfCorrectAnswers = Answer.numberOfCorrectAnswers(questions, answers);

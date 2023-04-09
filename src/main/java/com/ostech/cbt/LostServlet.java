@@ -11,12 +11,11 @@ import java.io.IOException;
 
 @WebServlet(name = "LostServlet", urlPatterns = {"/404"})
 public class LostServlet extends HttpServlet {
-    private Candidate candidate;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        candidate = Candidate.retrieveCandidateDetailsFromSession(request);
+        Candidate candidate = Candidate.retrieveCandidateDetailsFromSession(request);
 
         request.setAttribute("candidate", candidate);
         request.getRequestDispatcher("404.jsp").forward(request, response);

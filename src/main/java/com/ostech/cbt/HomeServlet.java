@@ -14,14 +14,12 @@ import java.util.ArrayList;
 
 @WebServlet(name = "HomeServlet", urlPatterns = {"/home", "/index"})
 public class HomeServlet extends HttpServlet {
-    private Candidate candidate;
-    private ArrayList<Subject> subjects;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        candidate = Candidate.retrieveCandidateDetailsFromSession(request);
-        subjects = SubjectManipulator.getAllSubjects();
+        Candidate candidate = Candidate.retrieveCandidateDetailsFromSession(request);
+        ArrayList<Subject> subjects = SubjectManipulator.getAllSubjects();
 
         request.setAttribute("candidate", candidate);
         request.setAttribute("subjects", subjects);

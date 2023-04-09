@@ -14,17 +14,16 @@ import java.util.ArrayList;
 
 @WebServlet(name = "SubjectServlet", urlPatterns = {"/subject"})
 public class SubjectServlet extends HttpServlet {
-    Candidate candidate;
-    Subject subject;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        candidate = Candidate.retrieveCandidateDetailsFromSession(request);
+        Candidate candidate = Candidate.retrieveCandidateDetailsFromSession(request);
 
         boolean isSpecificSubjectRequested = isSpecificSubjectRequested(request);
 
+        Subject subject;
         if (isSpecificSubjectRequested) {
             subject = retrieveSubject(request);
             int maximumNumberOfQuestions = SubjectManipulator.getMaximumNumberOfQuestions(subject.getId());
