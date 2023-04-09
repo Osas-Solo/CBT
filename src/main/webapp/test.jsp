@@ -45,7 +45,7 @@
 
     <div class="z-n1 text-end fixed-top mt-5 p-5">
         <%
-            int testTime = (int) request.getAttribute("testTime");
+            int testTime = (int) session.getAttribute("testTime");
         %>
         <h3>Time Left: <span style="display: none" id="timeLeft"><%=testTime%></span></h3>
     </div>

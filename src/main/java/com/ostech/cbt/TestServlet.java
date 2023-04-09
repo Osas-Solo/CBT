@@ -17,14 +17,35 @@ import java.util.ArrayList;
 
 @WebServlet(name = "TestServlet", urlPatterns = {"/test", "/exam"})
 public class TestServlet extends HttpServlet {
-    Candidate candidate;
-    Subject subject;
-    ArrayList<Question> questions;
+    private Candidate candidate;
+    private Subject subject;
+    private ArrayList<Question> questions;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String subjectPage = getServletContext().getContextPath() + "/subject";
-        response.sendRedirect(subjectPage);
+        candidate = Candidate.retrieveCandidateDetailsFromSession(request);
+
+        subject = (Subject) request.getSession().getAttribute("subject");
+        questions = (ArrayList<Question>) request.getSession().getAttribute("questions");
+        int testTime = 0;
+
+        if (request.getSession().getAttribute("testTime") != null) {
+            testTime = (int) request.getSession().getAttribute("testTime");
+        }
+
+        if (subject != null && questions != null && testTime != 0) {
+            response.setContentType("text/html");
+
+            request.setAttribute("candidate", candidate);
+            request.getSession().setAttribute("subject", subject);
+            request.getSession().setAttribute("questions", questions);
+            request.getSession().setAttribute("testTime", testTime);
+
+            request.getRequestDispatcher("test.jsp").forward(request, response);
+        } else {
+            String subjectPage = getServletContext().getContextPath() + "/subject";
+            response.sendRedirect(subjectPage);
+        }
     }
 
     @Override
@@ -37,10 +58,11 @@ public class TestServlet extends HttpServlet {
 
         if (subject.isFound()) {
             questions = retrieveQuestions(request);
+            int testTime = (int) (questions.size() * 60 * 1.5);
+
             request.getSession().setAttribute("subject", subject);
             request.getSession().setAttribute("questions", questions);
-            int testTime = (int) (questions.size() * 60 * 1.5);
-            request.setAttribute("testTime", testTime);
+            request.getSession().setAttribute("testTime", testTime);
         }
 
         request.setAttribute("candidate", candidate);
