@@ -76,7 +76,14 @@
                             <%=optionLabel%>.
                             <input type="radio" id="answer<%=questionNumber%>" name="answer<%=questionNumber%>"
                                    value="<%=currentOption.getKey()%>"
-                                   oninput="updateAnswer(<%=questionNumber%>, '<%=currentOption.getKey()%>')">
+                                   oninput="updateAnswer(<%=questionNumber%>, '<%=currentOption.getKey()%>')"
+                                <%
+                                  if (currentOption.getKey() == currentQuestion.getSelectedOption()) {
+                                %>
+                                   checked
+                                <%
+                                }
+                                %>>
                         </label>
                     </div>
                     <p class="col-9">

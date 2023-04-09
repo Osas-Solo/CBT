@@ -26,7 +26,7 @@ function updateTestTimeAtServer() {
 
     testTimeRequest.open("POST", "updateTestTime", true);
     testTimeRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    testTimeRequest.send("newTestTime" + testTime);
+    testTimeRequest.send("newTestTime=" + testTime);
 }
 
 function submitTestOnTimeUp() {
