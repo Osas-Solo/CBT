@@ -123,3 +123,9 @@
 </div>
 </body>
 </html>
+
+<%
+session.removeAttribute("subject");
+session.removeAttribute("questions");
+session.removeAttribute("testTime");
+%>
