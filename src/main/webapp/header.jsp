@@ -27,16 +27,7 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/test">Test</a>
         </li>
         <%
-            if (!candidate.isFound()) {
-        %>
-        <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/signup">Signup</a>
-        </li>
-        <%
-        } else {
+            if (candidate.isFound()) {
         %>
         <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>

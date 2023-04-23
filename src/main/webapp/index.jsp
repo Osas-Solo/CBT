@@ -1,36 +1,61 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.ostech.cbt.model.Subject" %>
+<%
+    String pageTitle = "Login";
+    String emailAddress = "";
 
-<%!
-    String pageTitle = "Home";
+    String emailAddressErrorMessage = "";
+    String passwordErrorMessage = "";
+
+    if (request.getAttribute("emailAddress") != null) {
+        emailAddress = (String) request.getAttribute("emailAddress");
+        emailAddressErrorMessage = (String) request.getAttribute("emailAddressErrorMessage");
+    }
+
+    if (request.getAttribute("passwordErrorMessage") != null) {
+        passwordErrorMessage = (String) request.getAttribute("passwordErrorMessage");
+    }
 %>
 
 <%@include file="header.jsp" %>
 
-<div class="text-center">
-    <h2>Select a subject below to begin a test</h2>
-</div>
-<div class="row justify-content-center">
-    <%
-        ArrayList<Subject> subjects = (ArrayList<Subject>) request.getAttribute("subjects");
+<%
+    String loginConfirmationDialog = "";
 
-        if (subjects != null) {
-            for (Subject currentSubject : subjects) {
-    %>
-    <article class="col-md-4 my-5 p-5 shadow text-center">
-        <h3>
-            <%=currentSubject.getName()%>
-        </h3>
-        <p class="btn btn-primary mt-3">
-            <a href="${pageContext.request.contextPath}/subject?name=<%=currentSubject.getName().toLowerCase()%>">
-                Take Test
-            </a>
-        </p>
-    </article>
-    <%
-            }
-        }
-    %>
+    if (request.getAttribute("loginConfirmationDialog") != null) {
+        loginConfirmationDialog = (String) request.getAttribute("loginConfirmationDialog");
+    }
+%>
+<%=loginConfirmationDialog%>
+
+<div class="text-center mb-5">
+    <h1 class="bg-white bg-opacity-75 shadow">Login</h1>
+</div>
+<div class="row">
+    <form method="post" action="${pageContext.request.contextPath}/login" class="bg-white col-md-6 col-auto mx-auto my-5
+        p-5 shadow">
+        <div class="col-12 mb-5 mx-auto">
+            <label class="form-label" for="emailAddress">Email Address<span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="emailAddress" name="emailAddress" required
+                   placeholder="Enter email address" value="<%=emailAddress%>"
+                   oninput="hideErrorMessages()">
+            <div class="text-danger" id="emailAddressErrorMessage"><%=emailAddressErrorMessage%>
+            </div>
+        </div>
+        <div class="col-12 mb-5 mx-auto">
+            <label class="form-label" for="password">Password<span class="text-danger">*</span></label>
+            <input type="password" class="form-control" id="password" name="password" required
+                   placeholder="Enter password" oninput="hideErrorMessages()">
+            <div class="text-danger" id="passwordErrorMessage"><%=passwordErrorMessage%>
+            </div>
+        </div>
+
+        <script src="${pageContext.request.contextPath}/js/login-validation.js"></script>
+
+        <div class="col-12 mb-5 mx-auto">
+            <button class="btn btn-primary px-3" type="submit" name="login">Login</button>
+            <p class="mt-1">Not registered yet? <a href="${pageContext.request.contextPath}/signup">Signup instead</a>
+            </p>
+        </div>
+    </form>
 </div>
 </div>
 </body>

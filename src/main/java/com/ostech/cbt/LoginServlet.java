@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login", "/signin"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/index", "/home", "/login", "/signin"})
 public class LoginServlet extends HttpServlet {
     private Candidate candidate;
     private String emailAddressErrorMessage = "";
@@ -21,8 +21,15 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        request.setAttribute("candidate", new Candidate());
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        candidate = Candidate.retrieveCandidateDetailsFromSession(request);
+        request.setAttribute("candidate", candidate);
+
+        if (candidate.isFound()) {
+            String selectTestPage = getServletContext().getContextPath() + "/select-test";
+            response.sendRedirect(selectTestPage);
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -33,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
         processLoginForm(request);
 
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     private void processLoginForm(HttpServletRequest request) {

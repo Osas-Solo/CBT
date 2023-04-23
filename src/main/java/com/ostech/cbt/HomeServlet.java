@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "HomeServlet", urlPatterns = {"/home", "/index"})
+@WebServlet(name = "HomeServlet", urlPatterns = {"/select-test"})
 public class HomeServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -23,7 +23,7 @@ public class HomeServlet extends HttpServlet {
 
         request.setAttribute("candidate", candidate);
         request.setAttribute("subjects", subjects);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("test-selector.jsp").forward(request, response);
     }
 
     public void destroy() {
