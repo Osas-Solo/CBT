@@ -43,17 +43,17 @@
             int numberOfQuestions = (int) request.getAttribute("numberOfQuestions");
             int numberOfCorrectAnswers = (int) request.getAttribute("numberOfCorrectAnswers");
     %>
-    <h2 class="text-center">
+    <h2 class="bg-white bg-opacity-75 shadow text-center">
         <%=candidate.getFullName()%>'s <%=subject.getName()%> Result
     </h2>
 
-    <div class="col-3 text-center fixed-top mt-5 p-5">
-        <h3>Test Score: <%=numberOfCorrectAnswers%>/<%=numberOfQuestions%>
+    <div class="col-3 text-center fixed-top mt-5 pt-5 ps-2">
+        <h3 class="bg-white bg-opacity-75 shadow">Test Score: <br><%=numberOfCorrectAnswers%>/<%=numberOfQuestions%>
         </h3>
     </div>
 
     <div class="row mt-5">
-        <form>
+        <form class="bg-white col-md-9 col-auto mx-auto my-5 p-5 shadow">
             <%
                 for (int i = 0; i < questions.size(); i++) {
             %>

@@ -47,8 +47,9 @@
     </ul>
 </nav>
 
-<div class="container mb-5" <%if (pageTitle.equals("Login")) {
+<div class="container mb-5 <%if (pageTitle.equals("Login") || pageTitle.equals("Signup") || pageTitle.equals("Subject")
+    || pageTitle.equals("Test") || pageTitle.equals("Result")) {
     %>
-     id="login-form-container"
+     form-container
     <%
-}%>>
+}%>">

@@ -39,19 +39,20 @@
         if (subject.isFound()) {
             ArrayList<Question> questions = (ArrayList<Question>) session.getAttribute("questions");
     %>
-    <h2 class="text-center">
+    <h2 class="bg-white bg-opacity-75 shadow text-center">
         <%=subject.getName()%>
     </h2>
 
-    <div class="z-n1 text-end fixed-top mt-5 p-5">
+    <div class="z-1 text-end fixed-top mt-5 pt-5 pe-2">
         <%
             int testTime = (int) session.getAttribute("testTime");
         %>
-        <h3>Time Left: <span style="display: none" id="timeLeft"><%=testTime%></span></h3>
+        <h3>Time Left: <br><span style="display: none" id="timeLeft"><%=testTime%></span></h3>
     </div>
     <script src="js/test-timer-updater.js"></script>
     <div class="row mt-5">
-        <form method="post" action="${pageContext.request.contextPath}/result">
+        <form method="post" action="${pageContext.request.contextPath}/result" class="bg-white col-md-9 col-auto mx-auto
+            my-5 p-5 shadow">
             <%
                 int questionNumber = 0;
                 for (Question currentQuestion : questions) {
@@ -129,7 +130,7 @@
             <span class="d-none" id="resultPage">${pageContext.request.contextPath}/result</span>
 
             <div class="col-md-4 mb-5 mx-auto text-center">
-                <button id="submitButton" class="btn btn-primary px-3" type="button" onclick="submitTest()" disabled>Submit</button>
+                <button id="submitButton" class="btn btn-primary px-3" type="button" onclick="submitTest()">Submit</button>
             </div>
             <script src="js/question-navigator.js"></script>
             <script src="js/answer-updater.js"></script>

@@ -27,7 +27,7 @@
 <%=loginConfirmationDialog%>
 
 <div class="text-center mb-5">
-    <h1>Login</h1>
+    <h1 class="bg-white bg-opacity-75 shadow">Login</h1>
 </div>
 <div class="row">
     <form method="post" action="${pageContext.request.contextPath}/login" class="bg-white col-md-6 col-auto mx-auto my-5

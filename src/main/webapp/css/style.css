@@ -51,6 +51,6 @@ button:active, .btn:active, .btn-primary:active {
     text-decoration: none;
 }
 
-#login-form-container {;
+.form-container {
     background-image: url("../img/cbt-centre.jpg");
 }
