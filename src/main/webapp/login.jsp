@@ -30,8 +30,9 @@
     <h1>Login</h1>
 </div>
 <div class="row">
-    <form method="post" action="${pageContext.request.contextPath}/login">
-        <div class="col-md-4 mb-5 mx-auto">
+    <form method="post" action="${pageContext.request.contextPath}/login" class="bg-white col-md-6 col-auto mx-auto my-5
+        p-5 shadow">
+        <div class="col-12 mb-5 mx-auto">
             <label class="form-label" for="emailAddress">Email Address<span class="text-danger">*</span></label>
             <input type="email" class="form-control" id="emailAddress" name="emailAddress" required
                    placeholder="Enter email address" value="<%=emailAddress%>"
@@ -39,7 +40,7 @@
             <div class="text-danger" id="emailAddressErrorMessage"><%=emailAddressErrorMessage%>
             </div>
         </div>
-        <div class="col-md-4 mb-5 mx-auto">
+        <div class="col-12 mb-5 mx-auto">
             <label class="form-label" for="password">Password<span class="text-danger">*</span></label>
             <input type="password" class="form-control" id="password" name="password" required
                    placeholder="Enter password" oninput="hideErrorMessages()">
@@ -49,9 +50,10 @@
 
         <script src="${pageContext.request.contextPath}/js/login-validation.js"></script>
 
-        <div class="col-md-4 mb-5 mx-auto">
+        <div class="col-12 mb-5 mx-auto">
             <button class="btn btn-primary px-3" type="submit" name="login">Login</button>
-            <p class="mt-1">Not registered yet? <a href="${pageContext.request.contextPath}/signup">Signup instead</a></p>
+            <p class="mt-1">Not registered yet? <a href="${pageContext.request.contextPath}/signup">Signup instead</a>
+            </p>
         </div>
     </form>
 </div>

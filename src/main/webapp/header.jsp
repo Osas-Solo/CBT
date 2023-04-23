@@ -7,7 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CBT | <%=pageTitle%></title>
+    <title>CBT | <%=pageTitle%>
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
@@ -46,4 +47,8 @@
     </ul>
 </nav>
 
-<div class="container mb-5">
+<div class="container mb-5" <%if (pageTitle.equals("Login")) {
+    %>
+     id="login-form-container"
+    <%
+}%>>

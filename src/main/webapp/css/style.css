@@ -50,3 +50,7 @@ button:active, .btn:active, .btn-primary:active {
     color: #ffffff;
     text-decoration: none;
 }
+
+#login-form-container {;
+    background-image: url("../img/cbt-centre.jpg");
+}
