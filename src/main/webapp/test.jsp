@@ -137,9 +137,7 @@
             <script src="js/question-navigator.js"></script>
             <script src="js/answer-updater.js"></script>
             <script>
-                setTimeout(submitTestOnTimeUp, <%=testTime + 1%> * 1000
-                )
-                ;
+                setTimeout(submitTestOnTimeUp, <%=testTime + 1%> * 1000);
             </script>
         </form>
     </div>
