@@ -42,7 +42,7 @@
     </h2>
     <div class="row text-center mt-5">
         <form method="post" action="${pageContext.request.contextPath}/test" class="bg-white col-md-6 col-auto mx-auto
-            my-5 p-5 shadow">
+            my-5 p-5 shadow" id="numberOfQuestionsForm">
             <div class="col-12 mb-1 mx-auto">
                 <input type="text" class="form-control d-none" id="subjectID" name="subjectID" required
                        value="<%=subject.getId()%>">
@@ -51,10 +51,6 @@
                 <input type="number" class="form-control" id="numberOfQuestions" name="numberOfQuestions" required
                        placeholder="Enter number of questions" min="2" max="<%=maximumNumberOfQuestions%>"
                        oninput="updateTestTimeInstruction()">
-            </div>
-
-            <div class="col-12 mb-5 mx-auto">
-                <button class="btn btn-primary px-3" type="submit" name="startTest">Start Test</button>
             </div>
         </form>
     </div>
@@ -68,7 +64,7 @@
                         You have <span id="testTime"></span> to complete the test
                     </li>
                     <li class="list-group-item">You can only select one option for every question</li>
-                    <li class="list-group-item">You the navigation buttons to go back and forth between questions</li>
+                    <li class="list-group-item">Use the navigation buttons to go back and forth between questions</li>
                     <li class="list-group-item">
                         You can always skip any question you aren't sure of. You may return back to that questions
                         as long as your test has not timed out yet</li>
@@ -77,6 +73,11 @@
 
             <img src="img/exam-girl.jpg" class="col-md-8 col-12">
 
+            <div class="col-12 my-5 mx-auto">
+                <button class="btn btn-primary px-3" type="submit" name="startTest" form="numberOfQuestionsForm">
+                    Start Test
+                </button>
+            </div>
         </div>
     </div>
 
