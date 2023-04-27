@@ -74,7 +74,8 @@
             <img src="img/exam-girl.jpg" class="col-md-8 col-12">
 
             <div class="col-12 my-5 mx-auto">
-                <button class="btn btn-primary px-3" type="submit" name="startTest" form="numberOfQuestionsForm">
+                <button class="btn btn-primary px-3" type="submit" id="startTestButton" name="startTest"
+                        onclick="displayQuestionNumberErrorAlert()" form="numberOfQuestionsForm">
                     Start Test
                 </button>
             </div>
@@ -99,6 +100,13 @@
             }
         }
 
+        function displayQuestionNumberErrorAlert() {
+            const numberOfQuestions = numberOfQuestionsInput.value;
+
+            if (numberOfQuestions < 2 || numberOfQuestions > <%=maximumNumberOfQuestions%>) {
+                alert("Sorry, you can only set the number of questions to a range of 2 to <%=maximumNumberOfQuestions%>");
+            }
+        }
     </script>
 
     <%
