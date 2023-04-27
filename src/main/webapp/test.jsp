@@ -47,7 +47,7 @@
         <%
             int testTime = (int) session.getAttribute("testTime");
         %>
-        <h3 class="">Time Left: <br><span style="display: none" id="timeLeft"><%=testTime%></span></h3>
+        <h3 class="bg-white bg-opacity-75 shadow">Time Left: <br><span style="display: none" id="timeLeft"><%=testTime%></span></h3>
     </div>
     <script src="js/test-timer-updater.js"></script>
 
