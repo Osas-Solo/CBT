@@ -1,0 +1,1 @@
+web: java -jar target/CBT-1.0-SNAPSHOT.jar
