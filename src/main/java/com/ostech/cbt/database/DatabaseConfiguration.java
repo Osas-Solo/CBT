@@ -10,8 +10,7 @@ public class DatabaseConfiguration {
 
     public Connection getDatabaseConnection() {
         try {
-            final File CURRENT_DIRECTORY = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
-            final Dotenv dotenv = Dotenv.configure().directory(CURRENT_DIRECTORY.getCanonicalPath()).load();
+            final Dotenv dotenv = Dotenv.load();
             final String DATABASE_HOST = dotenv.get("DATABASE_HOST");
             final String DATABASE_PASSWORD = dotenv.get("DATABASE_PASSWORD");
             final String DATABASE_USER = dotenv.get("DATABASE_USER");
