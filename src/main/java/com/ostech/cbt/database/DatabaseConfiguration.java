@@ -16,6 +16,8 @@ public class DatabaseConfiguration {
             final String DATABASE_USER = dotenv.get("DATABASE_USER");
             final String DATABASE_NAME = dotenv.get("DATABASE_NAME");
 
+            System.out.println("Database Host:" + DATABASE_HOST);
+
             String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
             String url = String.format("jdbc:mysql://%s:3306/%s", DATABASE_HOST, DATABASE_NAME);
