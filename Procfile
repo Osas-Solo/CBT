@@ -1,1 +1,1 @@
-web: java -jar target/CBT-1.0-SNAPSHOT
+web: java -war target/CBT-1.0-SNAPSHOT
